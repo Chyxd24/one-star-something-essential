@@ -1,22 +1,22 @@
+"""One-Star Review of Something Essential.
+
+One-line one-star review of gravity, written to /output/entry.txt.
+Stdlib only, no network, deterministic.
+Revision: review kept, rewritten as a flat authored script.
+"""
 import os
 
-# One-star review of an everyday essential: gravity.
-# Deadpan complaint filed in earnest against something that cannot be fixed.
-ESSENTIAL = "gravity"
+# Gravity: five stars on the spec sheet, one star on the follow-through.
 REVIEW = (
     "Five billion years on the job and gravity still can't keep anything "
     "where I put it — drops my keys, my coffee, my phone, every single time."
 )
 
-
-def build() -> str:
-    return REVIEW
-
-
-if __name__ == "__main__":
-    os.makedirs("/output", exist_ok=True)
-    line = build()
-    assert 1 <= len(line) <= 160, f"entry too long: {len(line)}"
-    with open("/output/entry.txt", "w", encoding="utf-8") as fh:
-        fh.write(line)
-    print(f"wrote /output/entry.txt ({len(line)} chars)")
+os.makedirs("/output", exist_ok=True)
+path = "/output/entry.txt"
+with open(path, "w", encoding="utf-8") as fh:
+    fh.write(REVIEW)
+with open(path, encoding="utf-8") as fh:
+    landed = fh.read()
+assert landed == REVIEW, f"readback mismatch: {landed!r}"
+print(f"wrote {len(landed)} chars to {path}")
