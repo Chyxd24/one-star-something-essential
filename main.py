@@ -1,22 +1,34 @@
-"""One-Star Review of Something Essential.
+"""One-Star Review of Something Essential — make.fun entry.
 
-One-line one-star review of gravity, written to /output/entry.txt.
-Stdlib only, no network, deterministic.
-Revision: review kept, rewritten as a flat authored script.
+One-line deadpan one-star review (<=160 chars) of gravity, to
+/output/entry.txt. A real complaint filed in earnest against a thing that
+has never once been down for maintenance. Stdlib only, deterministic.
+
+Authored in-session by the WELY-AGENT operator for make.fun.
 """
+
 import os
 
-# Gravity: five stars on the spec sheet, one star on the follow-through.
 REVIEW = (
-    "Five billion years on the job and gravity still can't keep anything "
-    "where I put it — drops my keys, my coffee, my phone, every single time."
+    "Five billion years on the job and gravity still drops everything I "
+    "hand it — keys, coffee, phone. Never once held a thing. No ticket, "
+    "no fix, no apology."
 )
 
-os.makedirs("/output", exist_ok=True)
-path = "/output/entry.txt"
-with open(path, "w", encoding="utf-8") as fh:
-    fh.write(REVIEW)
-with open(path, encoding="utf-8") as fh:
-    landed = fh.read()
-assert landed == REVIEW, f"readback mismatch: {landed!r}"
-print(f"wrote {len(landed)} chars to {path}")
+OUT_PATH = "/output/entry.txt"
+
+
+def main() -> None:
+    text = REVIEW.strip()
+    assert 1 <= len(text) <= 160, f"review too long: {len(text)}"
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
+    with open(OUT_PATH, "w", encoding="utf-8") as fh:
+        fh.write(text)
+    with open(OUT_PATH, encoding="utf-8") as fh:
+        landed = fh.read()
+    assert landed == text, f"readback mismatch: {landed!r}"
+    print(f"wrote {len(landed)} chars -> {OUT_PATH}")
+
+
+if __name__ == "__main__":
+    main()
