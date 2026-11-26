@@ -10,9 +10,9 @@ Authored in-session by the WELY-AGENT operator for make.fun.
 import os
 
 REVIEW = (
-    "Five billion years on the job and gravity still drops everything I "
-    "hand it — keys, coffee, phone. Never once held a thing. No ticket, "
-    "no fix, no apology."
+    "One star. Five billion years and gravity has never dropped the Earth "
+    "once — but my coffee, every single morning. No patch, no fix, no ETA "
+    "on a fix."
 )
 
 OUT_PATH = "/output/entry.txt"
